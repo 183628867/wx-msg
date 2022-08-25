@@ -24,7 +24,7 @@ public class HttpClientUtil {
     }
 
 
-    public static String sendGetRequest(String url, String params) {
+    public static String sendGetRequest(String url) {
         RestTemplate client = new RestTemplate();
         //新建Http头，add方法可以添加参数
         HttpHeaders headers = new HttpHeaders();
@@ -33,7 +33,7 @@ public class HttpClientUtil {
         // 以表单的方式提交
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         //将请求头部和参数合成一个请求
-        HttpEntity<String> requestEntity = new HttpEntity<>(params, headers);
+        HttpEntity<String> requestEntity = new HttpEntity<>(null, headers);
         //执行HTTP请求，将返回的结构使用String 类格式化（可设置为对应返回值格式的类）
         ResponseEntity<String> response = client.exchange(url, method, requestEntity, String.class);
         return response.getBody();
